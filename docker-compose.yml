@@ -1,0 +1,27 @@
+version: '3.7'
+services:
+  sphinxsearch:
+    image: sphinxsearch:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: sphinxsearch
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:9312:9306"
+    labels:
+      co.elastic.logs/module: sphinxsearch
+      co.elastic.logs/fileset.stdout: access
+      co.elastic.logs/fileset.stderr: error
+      co.elastic.metrics/module: sphinxsearch
+volumes:
+  sphinxsearch:
+    driver: "local"
+
+
+
+
+
+
+
+
